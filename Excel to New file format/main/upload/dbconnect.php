@@ -2,7 +2,7 @@
     $host = 'localhost';
     $db_name = 'project1'; 
     $db_username = 'root'; 
-    $db_password = '';
+    $db_password = 'root';
      // used to connect to database
     try
     {
