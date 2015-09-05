@@ -1,0 +1,13 @@
+
+#Query'
+
+CREATE table day2(
+    id int not NULL AUTO_INCREMENT,
+    name varchar(100),
+    email varchar(100) not null,
+    PRIMARY KEY(id)
+    );
+	
+#search & Remove anomaly
+SELECT * FROM `day0` WHERE email not like "%@%";
+DELETE FROM `day0` WHERE email not like "%@%";
