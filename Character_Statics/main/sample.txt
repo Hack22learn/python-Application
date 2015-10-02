@@ -1,0 +1,7 @@
+DOS Attacks or Denial Of Services Attack have become very common amongst Hackers who use them as a path to
+fame and respect in the underground groups of the Internet. Denial of Service Attacks basically means denying valid 
+Internet and Network users from using the services of the target network or server. It basically means, launching an 
+attack, which will temporarily make the services, offered by the Network unusable by legitimate users.
+In others words one can describe a DOS attack, saying that a DOS attack is one in which you clog up so much 
+memory on the target system that it cannot serve legitimate users. Or you send the target system data packets, which 
+cannot be handled by it and thus causes it to either crash, reboot or more commonly deny services to legitimate users.
