@@ -136,7 +136,7 @@ if __name__=='__main__':
     genre=top_genre[0]#finding best cast in genre 0 for Drama , 1 for comedy and 2 for Th 
     ratings=Rating_Cast([genre]) 
     ratings=average_Rating(ratings[0],ratings[1])
-    file_write(ratings[0],ratings[1])
+    #file_write(ratings[0],ratings[1])
     #database(ratings[0],ratings[1])
     #NoW find best director and best top 3 actor in this genre
     director=top_director(ratings[1])
@@ -149,7 +149,7 @@ if __name__=='__main__':
     genre=top_genre[1]#finding best cast in genre 0 for Drama , 1 for comedy and 2 for Th 
     ratings=Rating_Cast([genre]) 
     ratings=average_Rating(ratings[0],ratings[1])
-    file_write(ratings[0],ratings[1])
+    #file_write(ratings[0],ratings[1])
     #database(ratings[0],ratings[1])
     #NoW find best director and best top 3 actor in this genre
     director=top_director(ratings[1])
@@ -161,7 +161,7 @@ if __name__=='__main__':
     genre=top_genre[2]#finding best cast in genre 0 for Drama , 1 for comedy and 2 for Th 
     ratings=Rating_Cast([genre]) 
     ratings=average_Rating(ratings[0],ratings[1])
-    file_write(ratings[0],ratings[1])
+    #file_write(ratings[0],ratings[1])
     #database(ratings[0],ratings[1])
     #NoW find best director and best top 3 actor in this genre
     director=top_director(ratings[1])
