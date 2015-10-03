@@ -1,4 +1,4 @@
-import xlrd
+import xlrd,anydbm
 #find top 3 frequently occuring  genere
 Wbook = xlrd.open_workbook('PicturePerfect.xlsx') #global data
 
@@ -11,10 +11,13 @@ def Rating_Cast(genre):
     #third get 3 and remainig got 1
     #then divide rate*number_of_people_rate in given ratio and assign to them
     data = Wbook.sheet_by_index(0)
-    
+    #counter=0
     director=dict()
     actor=dict()
-    for row in range(1,4):#data.nrows):
+    for row in range(1,data.nrows):
+    	#counter+=1
+    	#if counter %100==0:
+    	#	print 'record completed',counter
         flag=False
         for col in [1,2,3,4,5]:
             if col not in [2,3]:
@@ -67,32 +70,105 @@ def average_Rating(actor,director):
 	for actr in actor:
 		sum_r=sum(actor[actr][1:])
 		l=len(actor[actr][1:])
-		actor[actr]=[actor[actr][0],(sum_r/l)*(actor[actr][0]/float(500))]
+		actor[actr]=(sum_r/l)*(actor[actr][0]/float(500))
 	for directr in director:
 		sum_r=sum(director[directr][1:])
 		l=len(director[directr][1:])
-		director[directr]=[director[directr][0],(sum_r/l)*(director[directr][0]/float(500))]
+		director[directr]=(sum_r/l)*(director[directr][0]/float(500))
 
 	return (actor,director)
 
 def file_write(actor,director):
 	f=open("Actor.data",'w')
 	for act in actor:
-		f.write(act+", "+", ".join([str(x) for x in actor[act]])+ '\n')
+		f.write(act+", "+str(actor[act])+ '\n')
 	f.close()
 	f=open('director.data','w')
 	for dt in director:
-		f.write(dt+", "+", ".join([str(x) for x in director[dt]])+'\n')
+		f.write(dt+", "+str(director[dt])+'\n')
 	f.close()
 
+'''def database(actor,director):
+	db_a = anydbm.open('actor.anydb', 'c')
+	for key in actor:
+		db_a[key]=actor[key][1]
+	db_a.close()
+	db_d=anydbm.open('director.anydb', 'c')
+	for key in director:
+		db_d[key]=director[key][1]
+	db_d.close()
+
+'''
+
+def top_director(director):
+	#return name of top director
+	top=max(director.values())
+	for key in director:
+		if director[key]== top:
+			return key
+	print 'error'
+	return False
+
+def top_actor(actor):
+	#top four actor in that genre
+	ls=actor.values()
+	ls.sort(reverse=True)
+	top_act=[False,False,False,False]
+	
+	for key in actor:
+		if actor[key]==ls[0]:
+			top_act[0]=key
+		elif actor[key]==ls[1]:
+			top_act[1]=key
+		elif actor[key]==ls[2]:
+			top_act[2]=key
+		elif actor[key]==ls[3]:
+			top_act[3]=key
+		elif False not in top_act:
+			return top_act
+	print 'Error'
 
 
         
 if __name__=='__main__':
     top_genre=[u'Drama',u'Comedy',u'Thriller']
-    ratings=Rating_Cast(top_genre)
+    print'**************************************************************************' 
+    genre=top_genre[0]#finding best cast in genre 0 for Drama , 1 for comedy and 2 for Th 
+    ratings=Rating_Cast([genre]) 
     ratings=average_Rating(ratings[0],ratings[1])
     file_write(ratings[0],ratings[1])
-
+    #database(ratings[0],ratings[1])
+    #NoW find best director and best top 3 actor in this genre
+    director=top_director(ratings[1])
+    actors=top_actor(ratings[0])
+    print 'Best Casting In Genre:',genre
+    print 'director :',director
+    print 'actors :',actors
+    
+    print'**************************************************************************' 
+    genre=top_genre[1]#finding best cast in genre 0 for Drama , 1 for comedy and 2 for Th 
+    ratings=Rating_Cast([genre]) 
+    ratings=average_Rating(ratings[0],ratings[1])
+    file_write(ratings[0],ratings[1])
+    #database(ratings[0],ratings[1])
+    #NoW find best director and best top 3 actor in this genre
+    director=top_director(ratings[1])
+    actors=top_actor(ratings[0])
+    print 'Best Casting In Genre:',genre
+    print 'director :',director
+    print 'actors :',actors
+    print'**************************************************************************' 
+    genre=top_genre[2]#finding best cast in genre 0 for Drama , 1 for comedy and 2 for Th 
+    ratings=Rating_Cast([genre]) 
+    ratings=average_Rating(ratings[0],ratings[1])
+    file_write(ratings[0],ratings[1])
+    #database(ratings[0],ratings[1])
+    #NoW find best director and best top 3 actor in this genre
+    director=top_director(ratings[1])
+    actors=top_actor(ratings[0])
+    print 'Best Casting In Genre:',genre
+    print 'director :',director
+    print 'actors :',actors
+    print'**************************************************************************' 
     print "thank you"
 
